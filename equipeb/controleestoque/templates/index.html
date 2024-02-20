@@ -6,6 +6,11 @@
     <title>Index</title>
 </head>
 <body>
-    
+    <h3> Lista de usuarios </h3>
+<ul>
+    {% for user in users %}
+        <li>{{ user.username }}</li>
+    {% endfor %}
+</ul>
 </body>
 </html>
