@@ -1,4 +1,2 @@
-__pycache__
-controleestoque\__pycache__
-equipeb/controleestoque/__pycache__/
-equipeb/controleestoque/__pycache__/views.cpython-312.pyc
+/pycache/*
+*.pyc
