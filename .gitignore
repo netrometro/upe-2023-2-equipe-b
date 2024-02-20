@@ -1,1 +1,23 @@
+<<<<<<< Updated upstream
 __pycache__
+=======
+/pycache/*
+*.pyc
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Visual Studio Code specific files
+.vscode/
+*.code-workspace
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+local_settings.py
+db.sqlite3
+media/
+>>>>>>> Stashed changes
