@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
 </head>
+
 <body>
-    <h3> Lista de usuarios </h3>
-<ul>
-    {% for user in users %}
-        <li>{{ user.username }}</li>
-    {% endfor %}
-</ul>
+    <div style="align-content: center; width: 100%; text-align: center;">
+        <h2> Lista de usuarios </h2>
+
+        <ul>
+            <!--     
+            <div><li>{{ user.username }}</li>
+            <li>{{ user.email }}</li></div> -->
+            <table style="width:100%">
+                <tr>
+                    <th>Nickname</th>
+                    <th>Email</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+    
+        </ul>
+    </div>
 </body>
+
 </html>
