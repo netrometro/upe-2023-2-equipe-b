@@ -39,4 +39,10 @@ class CustomUserCreationForm(UserCreationForm):
             self.cleaned_data['email'],  
             self.cleaned_data['password1']  
         )  
-        return user
+        return userfrom django import forms
+from .models import Produtos
+
+class ProdutosFormCriar(forms.ModelForm):
+    class Meta:
+        model = Produtos
+        fields = ['nome'
