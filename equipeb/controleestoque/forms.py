@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm  
 from django.core.exceptions import ValidationError  
 from django.forms.fields import EmailField  
-from django.forms.forms import Form  
+from django.forms.forms import Form         
+from .models import Produtos
     
 class CustomUserCreationForm(UserCreationForm):  
     username = forms.CharField(label='username', min_length=5, max_length=150)  
@@ -39,10 +40,9 @@ class CustomUserCreationForm(UserCreationForm):
             self.cleaned_data['email'],  
             self.cleaned_data['password1']  
         )  
-        return userfrom django import forms
-from .models import Produtos
+        return user
 
 class ProdutosFormCriar(forms.ModelForm):
     class Meta:
         model = Produtos
-        fields = ['nome'
+        fields = ['nome', 'codigo', 'preco', 'quantidade', 'cor', 'tamanho']
