@@ -1,4 +1,16 @@
-from django import forms  
+from django import forms
+from .models import FornecedorModel
+
+class FornecedorForm(forms.ModelForm):
+    class Meta:
+        model = FornecedorModel
+        fields = [
+            "nome",
+            "sede_local",
+            "telefone_contato",
+            "entrada_data",
+        ]
+        # or fields = "__all__"
 from django.contrib.auth.models import User  
 from django.contrib.auth.forms import UserCreationForm  
 from django.core.exceptions import ValidationError  

@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User  
+from .forms import FornecedorForm
 from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
@@ -15,6 +16,28 @@ def index(request):
 	}
     return render(request, "index.html",context) 
 
+def list_supplier(request):
+    context = {}
+
+    fornecedores = FornecedorForm
+
+    context['fornecedores'] = str(fornecedores)
+
+    return render(request, "list_supplier.html", context)
+
+def new_supplier(request):
+    context ={}
+ 
+    # create object of form
+    form = FornecedorForm(request.POST or None, request.FILES or None)
+     
+    # check if form data is valid
+    if form.is_valid():
+        # save the form data to model
+        form.save()
+ 
+    context['form']= form
+    return render(request, "new_supplier.html", context)
 
 
 def register(request):  
