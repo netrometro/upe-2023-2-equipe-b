@@ -21,4 +21,5 @@ from controleestoque import views
 urlpatterns = [
     path("", include("controleestoque.urls")),
     path('admin/', admin.site.urls),
+    path('adicionar_produto', views.adicionar_produto, name='adicionar_produto'),
 ]
