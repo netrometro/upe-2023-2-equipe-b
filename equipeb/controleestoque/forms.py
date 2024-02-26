@@ -46,3 +46,7 @@ class ProdutosFormCriar(forms.ModelForm):
     class Meta:
         model = Produtos
         fields = ['nome', 'codigo', 'preco', 'quantidade', 'cor', 'tamanho']
+        labels = {
+            'preco': 'Preço',
+            'codigo': 'Código do Produto'
+        }

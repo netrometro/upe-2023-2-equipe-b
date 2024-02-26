@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-    table,
-    th,
-    td {
-        border: 1px solid black;
-    }
-</style>
+    <style>
+        /* Center-align content */
+        .center {
+            align-content: center;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
 
 <head>
+    {% extends 'headerandfooter.html' %}
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'controleestoque/stylesheet.css' %}">
+ <!-- Link to stylesheet.css -->
 </head>
 
+
 <body>
+    {% block content %}
     <div style="align-content: center; width: 100%; text-align: center;">
         <h2> Lista de usuarios </h2>
-
         <ul>
             <!--     
             <div><li>{{ user.username }}</li>
@@ -37,6 +43,7 @@
     
         </ul>
     </div>
+    {% endblock %}
 </body>
 
 </html>

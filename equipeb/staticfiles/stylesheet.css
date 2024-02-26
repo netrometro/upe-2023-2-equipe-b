@@ -1,0 +1,36 @@
+button {
+    background-color: #4CAF50; /* Green background color */
+    border: none; /* No border */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding */
+    text-align: center; /* Center-align text */
+    text-decoration: none; /* No underline */
+    display: inline-block; /* Display as inline block */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Hover effect */
+button:hover {
+    background-color: #45a049; /* Darker green background color */
+}
+
+/* Table styles */
+table {
+    border-collapse: collapse; /* Collapse borders */
+    width: 100%; /* Full width */
+    margin-top: 20px; /* Add some space at the top */
+}
+th, td {
+    border: 1px solid #dddddd; /* Light gray border */
+    padding: 8px; /* Padding inside cells */
+    text-align: left; /* Align text to the left */
+}
+th {
+    background-color: #f6d3f7; /* Pink background color for header */
+    color: #070707; /* White text color for header */
+}
+tr:nth-child(even) {
+    background-color: #fde7fa;
+}
