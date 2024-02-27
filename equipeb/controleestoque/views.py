@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User 
-from .models import Produtos
+from .models import Produtos, Fornecedor
 from .forms import ProdutosFormCriar, FornecedorForm
 from django.contrib.auth.forms import UserCreationForm
 
@@ -38,9 +38,9 @@ def adicionar_produto(request):
 def list_supplier(request):
     context = {}
 
-    fornecedores = FornecedorForm
+    fornecedores = Fornecedor.objects.all()
 
-    context['fornecedores'] = str(fornecedores)
+    context ['fornecedores'] = fornecedores
 
     return render(request, "list_supplier.html", context)
 
