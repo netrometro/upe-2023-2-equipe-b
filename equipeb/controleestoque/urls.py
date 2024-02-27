@@ -1,6 +1,7 @@
 from django.urls import path
 
 from . import views
+from .views import apagar_produto
 
 urlpatterns = [
     path("", views.index, name="index"),

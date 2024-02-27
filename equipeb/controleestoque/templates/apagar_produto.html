@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% extends 'headerandfooter.html' %}
+    {% load static %} <!-- Load static files -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apagar produto</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'controleestoque/stylesheet.css' %}">
+</head>
+
+<body>
+    {% block content %}
+    <div id="form-container">
+        <div style="align-content: center; width: 100%; text-align: center;">
+            <h1 style="padding-left: 5px;">Apagar Produto</h1>
+            <form method="POST">
+                <!-- Security token by Django -->
+                {% csrf_token %}
+                <p style="padding-left: 5px;">Deseja realmente apagar {{ produto.nome }}?</p>
+                <input type="submit" value="Apagar">
+                <button><a style="text-decoration: none; color:blackgit" href="/listar_produtos">Voltar</a></button>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+
+</body>
+
+</html>

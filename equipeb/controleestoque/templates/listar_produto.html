@@ -34,7 +34,7 @@
                     <th>Quantidade</th>
                     <th>Cor</th>
                     <th>Tamanho</th>
-                    <th>Editar</th>
+                    <th>Opções</th>
                 </tr>
                 {% for produto in produtos %}
                 <tr>
@@ -44,7 +44,10 @@
                     <td>{{ produto.quantidade }}</td>
                     <td>{{ produto.cor }}</td>
                     <td>{{ produto.tamanho }}</td>
-                    <td><a href="/editar_produto/{{ produto.id }}">Editar</a></td>
+                    <td>
+                        <a href="/editar_produto/{{ produto.id }}">Editar</a>
+                        <a href="/apagar_produto/{{ produto.id }}">Apagar</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </table>

@@ -47,10 +47,11 @@ def editar_produto(request, id):
 
 def apagar_produto(request, id):
     context={}
-    obj = get_object_or_404(Produtos, id=id)
+    produto = get_object_or_404(Produtos, id=id)
     if request.method == "POST":
-        obj.delete()
+        produto.delete()
         return redirect('/listar_produto/')
+    context["produto"] = produto
     return render(request, "apagar_produto.html", context)
 
 
