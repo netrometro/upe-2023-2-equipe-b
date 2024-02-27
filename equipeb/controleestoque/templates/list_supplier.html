@@ -32,6 +32,7 @@
                     <th>Sede</th>
                     <th>Contato</th>
                     <th>Entrada</th>
+                    <th>Opções</th>
                 </tr>
 
                 {% for fornecedor in fornecedores %}.
@@ -40,6 +41,7 @@
                     <td>{{ fornecedor.sede_local }}</td>
                     <td>{{ fornecedor.telefone_contato }}</td>
                     <td>{{ fornecedor.entrada_data }}</td>
+                    <td><a href="/update_supplier/{{ fornecedor.id }}">Editar</a></td>
                 </tr>                
                 {% endfor %}
 
