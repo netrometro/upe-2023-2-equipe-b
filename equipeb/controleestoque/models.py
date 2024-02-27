@@ -24,3 +24,10 @@ class Fornecedor(models.Model):
     def __str__(self):
         return self.nome
         
+class Nova_Solicitacao (models.Model):
+    codigo = models.CharField(max_length = 50, default = "null")
+    quantidade = models.IntegerField(max_length = 4, default = 0)
+    solicitante = models.CharField(max_length = 30, default = "null")
+    
+    def __str__(self):
+        return print(f"Código: {self.codigo}, Quantidade: {self.quantidade}, Solicitante: {self.solicitante}")
