@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        /* Center-align content */
+        .center {
+            align-content: center;
+            width: 100%;
+            text-align: center;
+        }
+        
+    </style>
+<head>
+    {% extends 'headerandfooter.html' %}
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Produto</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'controleestoque/stylesheet.css' %}">
+ <!-- Link to stylesheet.css -->
+</head>
+
+
+<body>
+    {% block content %}
+    <div id="form-container">
+        <h1>Adicionar Produtos</h1>
+        <!-- Render Django form -->
+        <form method='POST' action=''>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value='Adicionar'/>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,54 @@
+
+
+<!DOCTYPE html>
+<html>
+    
+<head>
+    {% extends 'headerandfooter.html' %}
+    {% load static %} <!-- Load static files -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lista de produtos</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'controleestoque/stylesheet.css' %}">
+ <!-- Link to stylesheet.css -->
+    <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
+</head>
+
+<body>
+    {% block content %}
+
+    <!-- botão para add produtos -->
+    <div style="align-content: center; width: 100%; text-align: center;">
+        <button>
+            <a href="/adicionar_produto" style="text-decoration: none; padding: 10px; color: white">Adicionar Produto</a>
+        </button>
+    </div>
+    <div style="align-content: center; width: 100%; text-align: center;">
+    
+        <ul>
+            <table style="width:100%">
+                <tr>
+                    <th>Nome</th>
+                    <th>COD.</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Cor</th>
+                    <th>Tamanho</th>
+                </tr>
+                {% for produto in produtos %}
+                <tr>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.codigo }}</td>
+                    <td>{{ produto.preco }}</td>
+                    <td>{{ produto.quantidade }}</td>
+                    <td>{{ produto.cor }}</td>
+                    <td>{{ produto.tamanho }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </ul>
+    </div>
+    {% endblock %}	
+
+</body>
+</html>

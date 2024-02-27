@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from controleestoque import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path("", include("controleestoque.urls")),
     path('admin/', admin.site.urls),
-]
+    path('adicionar_produto/', views.adicionar_produto, name='adicionar_produto'),
+]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,30 @@
+
+
+<!DOCTYPE html>
+<html>
+    
+<head>
+    {% extends 'headerandfooter.html' %}
+    {% load static %} <!-- Load static files -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lista de produtos</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'controleestoque/stylesheet.css' %}">
+ <!-- Link to stylesheet.css -->
+    <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
+</head>
+
+<body>
+    {% block content %}
+    <form method="POST" enctype="multipart/form-data">
+    
+        <!-- Security token -->
+        {% csrf_token %}
+    
+        <!-- Using the formset -->
+        {{ form.as_p }}
+        
+        <input type="submit" value="Submit">
+    </form>
+    {% endblock %}
+</body>
