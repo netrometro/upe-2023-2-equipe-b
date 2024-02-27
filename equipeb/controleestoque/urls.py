@@ -1,6 +1,7 @@
 from django.urls import path
 
 from controleestoque.views import index, listar_produto, adicionar_produto, list_supplier, new_supplier
+from . import views
 from .views import apagar_produto
 
 urlpatterns = [
