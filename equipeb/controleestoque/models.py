@@ -11,6 +11,7 @@ class Produtos(models.Model):
     quantidade = models.IntegerField()
     cor = models.CharField(max_length=30)
     tamanho = models.CharField(max_length=10)
+    alerta_estoque = models.IntegerField()
 
     def __str__(self):
         return self.nome

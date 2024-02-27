@@ -5,14 +5,31 @@ from .forms import ProdutosFormCriar, FornecedorForm
 from django.contrib.auth.forms import UserCreationForm
 
 def index(request):
-    user = User.objects.all()
+    # Obtém todos os usuários
+    users = User.objects.all()
+    
+    # Obtém todos os produtos
     produtos = Produtos.objects.all()
+
+    # Verifica se cada produto está com baixo estoque
+    for produto in produtos:
+        if produto.quantidade <= produto.alerta_estoque:
+            produto.baixo_estoque = True
+        else:
+            produto.baixo_estoque = False
+
+    # Define o título da página
     title = 'Página Inicial, bem vindo(a)!'
+
+    # Cria o contexto para enviar para o template
     context = {
         "title": title,
-        'users': user,
+        'users': users,
+        'produtos': produtos,
     }
-    return render(request, "index.html", context) 
+
+    # Renderiza a página index.html com o contexto fornecido
+    return render(request, "index.html", context)
 
 def listar_produto(request):
     title = 'Lista de Itens'

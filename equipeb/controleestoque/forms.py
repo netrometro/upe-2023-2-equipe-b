@@ -57,8 +57,9 @@ class CustomUserCreationForm(UserCreationForm):
 class ProdutosFormCriar(forms.ModelForm):
     class Meta:
         model = Produtos
-        fields = ['nome', 'codigo', 'preco', 'quantidade', 'cor', 'tamanho']
+        fields = ['nome', 'codigo', 'preco', 'quantidade', 'cor', 'tamanho', 'alerta_estoque']
         labels = {
             'preco': 'Preço',
-            'codigo': 'Código do Produto'
+            'codigo': 'Código do Produto',
+            'alerta_estoque': 'Alerta de Estoque Baixo'
         }
