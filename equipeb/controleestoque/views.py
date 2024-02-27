@@ -1,6 +1,6 @@
-from django.shortcuts import get_object_or_404, redirect, render, get_list_or_404, HttpResponseRedirect
+from django.shortcuts import redirect, render, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.models import User 
-from .models import Produtos
+from .models import Produtos, Fornecedor
 from .forms import ProdutosFormCriar, FornecedorForm
 from django.contrib.auth.forms import UserCreationForm
 
@@ -38,11 +38,33 @@ def adicionar_produto(request):
 def list_supplier(request):
     context = {}
 
-    fornecedores = FornecedorForm
+    fornecedores = Fornecedor.objects.all()
 
-    context['fornecedores'] = str(fornecedores)
+    context ['fornecedores'] = fornecedores
 
     return render(request, "list_supplier.html", context)
+
+def update_supplier(request, id):
+    # dictionary for initial data with 
+    # field names as keys
+    context ={}
+ 
+    # fetch the object related to passed id
+    fornecedor = get_object_or_404(Fornecedor, id = id)
+ 
+    # pass the object as instance in form
+    form = FornecedorForm(request.POST or None, instance = fornecedor)
+ 
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/list_supplier')
+ 
+    # add form dictionary to context
+    context["form"] = form
+ 
+    return render(request, "update_supplier.html", context)
 
 def new_supplier(request):
     context ={}

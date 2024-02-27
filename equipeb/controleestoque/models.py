@@ -1,5 +1,6 @@
 from django.db import models
 from django import forms
+import datetime
 
 # Create your models here.
 
@@ -19,8 +20,7 @@ class Fornecedor(models.Model):
     nome = models.CharField(max_length=75)
     sede_local = models.CharField(max_length=150)
     telefone_contato = models.BigIntegerField()
-    entrada_data = models.DateTimeField("Data publicada")
-
+    entrada_data = models.DateTimeField("Data publicada", blank=True, null=True, default=datetime.date.today)
     def __str__(self):
         return self.nome
         
