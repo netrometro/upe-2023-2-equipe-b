@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render, get_list_or_404, HttpResponseRedirect
 from django.contrib.auth.models import User 
 from .models import Produtos
 from .forms import ProdutosFormCriar, FornecedorForm
@@ -57,6 +57,25 @@ def new_supplier(request):
  
     context['form']= form
     return render(request, "new_supplier.html", context)
+
+def editar_produto(request, id):
+    context = {}
+    produto = get_object_or_404(Produtos, id=id)
+    form = ProdutosFormCriar(request.POST or None, instance=produto)
+    if form.is_valid():
+        form.save()
+        return redirect('/listar_produto/')
+    context["form"] = form
+    return render(request, "editar_produto.html", context)
+
+def apagar_produto(request, id):
+    context={}
+    produto = get_object_or_404(Produtos, id=id)
+    if request.method == "POST":
+        produto.delete()
+        return redirect('/listar_produto/')
+    context["produto"] = produto
+    return render(request, "apagar_produto.html", context)
 
 
 def register(request):  
