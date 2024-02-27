@@ -43,6 +43,26 @@
     
         </ul>
     </div>
+    <!-- Div para mostrar itens com baixo estoque -->
+    <div style="align-content: center; width: 100%; text-align: center;">
+        <h2> Produtos com Baixo Estoque </h2>
+        <ul>
+            <table style="width:100%">
+                <tr>
+                    <th>Nome do Produto</th>
+                    <th>Quantidade</th>
+                </tr>
+                {% for produto in produtos %}
+                {% if produto.baixo_estoque %}
+                <tr>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.quantidade }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </ul>
+    </div>
     {% endblock %}
 </body>
 

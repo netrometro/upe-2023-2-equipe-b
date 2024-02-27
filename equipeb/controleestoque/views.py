@@ -1,18 +1,35 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.models import User 
-from .models import Produtos
+from .models import Produtos, Fornecedor
 from .forms import ProdutosFormCriar, FornecedorForm
 from django.contrib.auth.forms import UserCreationForm
 
 def index(request):
-    user = User.objects.all()
+    # Obtém todos os usuários
+    users = User.objects.all()
+    
+    # Obtém todos os produtos
     produtos = Produtos.objects.all()
+
+    # Verifica se cada produto está com baixo estoque
+    for produto in produtos:
+        if produto.quantidade <= produto.alerta_estoque:
+            produto.baixo_estoque = True
+        else:
+            produto.baixo_estoque = False
+
+    # Define o título da página
     title = 'Página Inicial, bem vindo(a)!'
+
+    # Cria o contexto para enviar para o template
     context = {
         "title": title,
-        'users': user,
+        'users': users,
+        'produtos': produtos,
     }
-    return render(request, "index.html", context) 
+
+    # Renderiza a página index.html com o contexto fornecido
+    return render(request, "index.html", context)
 
 def listar_produto(request):
     title = 'Lista de Itens'
@@ -38,11 +55,33 @@ def adicionar_produto(request):
 def list_supplier(request):
     context = {}
 
-    fornecedores = FornecedorForm
+    fornecedores = Fornecedor.objects.all()
 
-    context['fornecedores'] = str(fornecedores)
+    context ['fornecedores'] = fornecedores
 
     return render(request, "list_supplier.html", context)
+
+def update_supplier(request, id):
+    # dictionary for initial data with 
+    # field names as keys
+    context ={}
+ 
+    # fetch the object related to passed id
+    fornecedor = get_object_or_404(Fornecedor, id = id)
+ 
+    # pass the object as instance in form
+    form = FornecedorForm(request.POST or None, instance = fornecedor)
+ 
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/list_supplier')
+ 
+    # add form dictionary to context
+    context["form"] = form
+ 
+    return render(request, "update_supplier.html", context)
 
 def new_supplier(request):
     context ={}
@@ -57,6 +96,25 @@ def new_supplier(request):
  
     context['form']= form
     return render(request, "new_supplier.html", context)
+
+def editar_produto(request, id):
+    context = {}
+    produto = get_object_or_404(Produtos, id=id)
+    form = ProdutosFormCriar(request.POST or None, instance=produto)
+    if form.is_valid():
+        form.save()
+        return redirect('/listar_produto/')
+    context["form"] = form
+    return render(request, "editar_produto.html", context)
+
+def apagar_produto(request, id):
+    context={}
+    produto = get_object_or_404(Produtos, id=id)
+    if request.method == "POST":
+        produto.delete()
+        return redirect('/listar_produto/')
+    context["produto"] = produto
+    return render(request, "apagar_produto.html", context)
 
 
 def register(request):  
