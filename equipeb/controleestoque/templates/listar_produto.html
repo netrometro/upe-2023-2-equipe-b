@@ -1,28 +1,30 @@
+
+
 <!DOCTYPE html>
 <html>
-    <style>
-        table,
-        th,
-        td {
-            border: 1px solid black;
-        }
-    </style>
+    
 <head>
+    {% extends 'headerandfooter.html' %}
+    {% load static %} <!-- Load static files -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Lista de itens</title>
+	<title>Lista de produtos</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'controleestoque/stylesheet.css' %}">
+ <!-- Link to stylesheet.css -->
+    <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
 </head>
-<body>
-    <div style='margin-left: 40px; margin-right: 40px; margin-top: 70px;'>
-        <h1>Adicionar Produtos</h1>
-        <!-- Add your form or content here -->
-        <form method='POST' action=''>{% csrf_token %}
-            {{ form }}
-            <input type="submit" value='Save'/>
-        </form>
-    </div>
 
-    <h2> Lista de produtos </h2>
+<body>
+    {% block content %}
+
+    <!-- botão para add produtos -->
+    <div style="align-content: center; width: 100%; text-align: center;">
+        <button>
+            <a href="/adicionar_produto" style="text-decoration: none; padding: 10px; color: white">Adicionar Produto</a>
+        </button>
+    </div>
+    <div style="align-content: center; width: 100%; text-align: center;">
+    
         <ul>
             <table style="width:100%">
                 <tr>
@@ -44,7 +46,9 @@
                 </tr>
                 {% endfor %}
             </table>
-	
+        </ul>
+    </div>
+    {% endblock %}	
 
 </body>
 </html>

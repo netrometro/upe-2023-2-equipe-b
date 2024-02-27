@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'controleestoque/stylesheet.css' %}">
+    <!-- Link to stylesheet.css -->
+    <style>
+        /* General styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh; /* Ensure full height of the viewport */
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #833785; /* Pink background color */
+            padding: 15px; /* Padding around the header */
+            text-align: center; /* Center-align text */
+            color: #ffffff; /* White text color */
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+        footer {
+            background-color: #833785; /* Pink background color */
+            padding: 15px; /* Padding around the footer */
+            text-align: center; /* Center-align text */
+            color: #ffffff; /* White text color */
+            box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            margin-top: auto;
+        }
+        nav {
+            margin-top: 20px; /* Add margin at the top of the navigation */
+        }
+        nav a {
+            color: #ffffff; /* White text color for links */
+            text-decoration: none; /* Remove underline from links */
+            margin: 0 10px; /* Add margin between links */
+        }
+        nav a:hover {
+            text-decoration: underline; /* Add underline on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="/" style="text-decoration: none; color:#ffffff">Controle de Estoque</a></h1>
+        <nav>
+            <a href="/listar_produto">Listar Produtos</a>
+            <a href="/adicionar_produto">Adicionar Produtos</a>
+        </nav>
+    </header>
+    <!-- Header content here -->
+    {% block content %}
+    {% endblock %}
+    <!-- Footer content here -->
+    <footer>
+        <p>Controle de Estoque</p>
+        <p>Para cadeira de Gerência de Configuração - UPE - Eng. de Software</p>
+    </footer>
+</body>
+</html>
