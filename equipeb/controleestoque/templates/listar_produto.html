@@ -1,16 +1,14 @@
-
-
 <!DOCTYPE html>
 <html>
-    
+
 <head>
     {% extends 'headerandfooter.html' %}
     {% load static %} <!-- Load static files -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Lista de produtos</title>
+    <title>Lista de produtos</title>
     <link rel="stylesheet" type="text/css" href="{% static 'controleestoque/stylesheet.css' %}">
- <!-- Link to stylesheet.css -->
+    <!-- Link to stylesheet.css -->
     <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
 </head>
 
@@ -20,11 +18,12 @@
     <!-- botão para add produtos -->
     <div style="align-content: center; width: 100%; text-align: center;">
         <button>
-            <a href="/adicionar_produto" style="text-decoration: none; padding: 10px; color: white">Adicionar Produto</a>
+            <a href="/adicionar_produto" style="text-decoration: none; padding: 10px; color: white">Adicionar
+                Produto</a>
         </button>
     </div>
     <div style="align-content: center; width: 100%; text-align: center;">
-    
+
         <ul>
             <table style="width:100%">
                 <tr>
@@ -34,6 +33,8 @@
                     <th>Quantidade</th>
                     <th>Cor</th>
                     <th>Tamanho</th>
+                    <th>Quantidade para <br>gitalerta de estoque</th>
+                    <th>Alerta</th>
                     <th>Opções</th>
                 </tr>
                 {% for produto in produtos %}
@@ -44,6 +45,14 @@
                     <td>{{ produto.quantidade }}</td>
                     <td>{{ produto.cor }}</td>
                     <td>{{ produto.tamanho }}</td>
+                    <td>{{ produto.alerta_estoque }}</td>
+                    <td>
+                        {% if produto.quantidade <= produto.alerta_estoque %}
+                            <span style="color:red;">Baixo estoque</span>
+                        {% else %}
+                            <p>Normal</p>
+                        {% endif %}
+                    </td>
                     <td>
                         <a href="/editar_produto/{{ produto.id }}">Editar</a>
                         <a href="/apagar_produto/{{ produto.id }}">Apagar</a>
@@ -53,7 +62,8 @@
             </table>
         </ul>
     </div>
-    {% endblock %}	
+    {% endblock %}
 
 </body>
+
 </html>
