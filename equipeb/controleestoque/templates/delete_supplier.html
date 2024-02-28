@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% extends 'headerandfooter.html' %}
+    {% load static %} <!-- Load static files -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Produto</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'controleestoque/stylesheet.css' %}">
+    <!-- Link to stylesheet.css -->
+    <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
+</head>
+
+<body>
+    {% block content %}
+
+    <!-- botão para add produtos -->
+    <div style="align-content: center; width: 100%; text-align: center;">
+        <ul>
+            <table style="width:100%">
+                <tr>
+                    <th>Nome</th>
+                    <th>Sede</th>
+                    <th>Contato</th>
+                    <th>Entrada</th>
+                </tr>
+
+                <tr>
+                    <td>{{ fornecedor.nome }}</td>
+                    <td>{{ fornecedor.sede_local }}</td>
+                    <td>{{ fornecedor.telefone_contato }}</td>
+                    <td>{{ fornecedor.entrada_data }}</td>
+                </tr>
+            </table>
+        </ul>
+        <!-- Create a Form -->
+        <form method="POST">
+            <!-- Security token by Django -->
+            <br>
+            {% csrf_token %}
+            Você quer realmente Excluir este fornecedor?
+            <br>
+            <br>
+
+            <!-- form as paragraph -->
+
+            <input type="submit" value="Sim">
+            <a href="/list_supplier">Não</a>
+        </form>
+
+    </div>
+    {% endblock %}
+
+</body>
+
+</html>
