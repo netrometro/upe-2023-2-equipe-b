@@ -94,3 +94,13 @@ def register(request):
         'form': form  
     }  
     return render(request, 'register.html', context)
+
+def delete_supplier(request, id):
+    context = {}
+    fornecedor = get_object_or_404(Fornecedor, id=id)
+    context["fornecedor"] = fornecedor
+
+    if request.method == 'POST':
+        fornecedor.delete()
+        return HttpResponseRedirect('/list_supplier')
+    return render(request, 'delete_supplier.html', context)
