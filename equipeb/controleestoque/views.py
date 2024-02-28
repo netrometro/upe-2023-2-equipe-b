@@ -76,7 +76,8 @@ def new_supplier(request):
     if form.is_valid():
         # save the form data to model
         form.save()
- 
+        return HttpResponseRedirect('/list_supplier')
+
     context['form']= form
     return render(request, "new_supplier.html", context)
 
