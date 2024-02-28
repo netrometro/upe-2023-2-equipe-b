@@ -3,6 +3,15 @@ from django import forms
 import datetime
 
 # Create your models here.
+    
+class Categoria (models.Model):
+    categoria = models.CharField(max_length=10, unique=True)
+
+    class Meta:
+        ordering = ('categoria',)
+    def __str__ (self):
+        return self.categoria
+
 
 class Produtos(models.Model):
     nome = models.CharField(max_length=100)
@@ -13,6 +22,13 @@ class Produtos(models.Model):
     cor = models.CharField(max_length=30)
     tamanho = models.CharField(max_length=10)
     alerta_estoque = models.IntegerField()
+    
+    categoria = models.ForeignKey(
+        Categoria,
+        on_delete = models.SET_NULL,
+        null = True,
+        blank = True
+    )
 
     def __str__(self):
         return self.nome
