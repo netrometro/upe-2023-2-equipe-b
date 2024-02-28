@@ -41,7 +41,10 @@
                     <td>{{ fornecedor.sede_local }}</td>
                     <td>{{ fornecedor.telefone_contato }}</td>
                     <td>{{ fornecedor.entrada_data }}</td>
-                    <td><a href="/update_supplier/{{ fornecedor.id }}">Editar</a></td>
+                    <td>
+                        <a href="/update_supplier/{{ fornecedor.id }}">Editar   </a>
+                        <a href="/delete_supplier/{{ fornecedor.id }}">Remover</a>
+                    </td>
                 </tr>                
                 {% endfor %}
 
