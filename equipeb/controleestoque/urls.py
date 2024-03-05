@@ -19,5 +19,6 @@ urlpatterns = [
     path('bar_produtos_chart', views.bar_produtos_chart, name='bar_produtos_chart'),
     path('chart', line_chart, name='line_chart'),
     path('chartJSON', line_chart_json, name='line_chart_json'),
+    path('export-pdf/', views.export_pdf, name='export-pdf'),  
 ]
 # EOF
