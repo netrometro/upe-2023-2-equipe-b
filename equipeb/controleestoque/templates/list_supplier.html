@@ -43,7 +43,10 @@
                     <td>{{ fornecedor.entrada_data }}</td>
                     <td>
                         <a href="/update_supplier/{{ fornecedor.id }}">Editar   </a>
+                        <br>
                         <a href="/delete_supplier/{{ fornecedor.id }}">Remover</a>
+                        <br>
+                        <a href="/qrCode/{{ fornecedor.telefone_contato }}">Conversar por WhatsApp</a>
                     </td>
                 </tr>                
                 {% endfor %}

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from controleestoque.views import index, listar_produto, adicionar_produto, list_supplier, update_supplier, new_supplier, delete_supplier
+from controleestoque.views import index, listar_produto, adicionar_produto, list_supplier, update_supplier, new_supplier, delete_supplier, generate_qrCode
 
 urlpatterns = [
     path("", index, name="index"),
@@ -10,4 +10,5 @@ urlpatterns = [
     path("update_supplier/<id>", update_supplier, name="update_supplier"),
     path("new_supplier", new_supplier, name="new_supplier"),
     path("delete_supplier/<id>", delete_supplier, name="delete_supplier"),
+    path("qrCode/<str:number>", generate_qrCode, name="generate_qrCode")
 ]
