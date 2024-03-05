@@ -203,7 +203,7 @@ def bar_produtos_chart(request):
 # EOF
 
 def export_pdf (request):
-	products = Produtos.object.all()
+	products = Produtos.objects.all()
 	
 	html_index = render_to_string('export-pdf.html', {'products':products})
 	
@@ -218,5 +218,5 @@ def export_pdf (request):
 		output.write(pdf)
 		output.flush()
 		output.seek(0)
-		response.write(output.readread())
+		response.write(output.read())
 	return response
