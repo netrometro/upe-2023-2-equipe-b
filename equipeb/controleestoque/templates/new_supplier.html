@@ -16,7 +16,7 @@
 
 <body>
     {% block content %}
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" action="">
     
         <!-- Security token -->
         {% csrf_token %}
@@ -24,7 +24,7 @@
         <!-- Using the formset -->
         {{ form.as_p }}
         
-        <input type="submit" value="Submit">
+        <input type="submit" value="Adicionar Fornecedor">
     </form>
     {% endblock %}
 </body>

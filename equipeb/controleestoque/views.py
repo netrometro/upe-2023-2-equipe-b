@@ -1,8 +1,13 @@
-from django.shortcuts import get_object_or_404, redirect, render, get_list_or_404, HttpResponseRedirect
+from django.shortcuts import redirect, render, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth.models import User 
-from .models import Produtos
+from .models import Produtos, Fornecedor
 from .forms import ProdutosFormCriar, FornecedorForm
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import TemplateView
+from chartjs.views.lines import BaseLineChartView
+from django.shortcuts import render
+from django.db.models import Sum
+from django.http import JsonResponse
 
 def index(request):
     # Obtém todos os usuários
@@ -55,11 +60,33 @@ def adicionar_produto(request):
 def list_supplier(request):
     context = {}
 
-    fornecedores = FornecedorForm
+    fornecedores = Fornecedor.objects.all()
 
-    context['fornecedores'] = str(fornecedores)
+    context ['fornecedores'] = fornecedores
 
     return render(request, "list_supplier.html", context)
+
+def update_supplier(request, id):
+    # dictionary for initial data with 
+    # field names as keys
+    context ={}
+ 
+    # fetch the object related to passed id
+    fornecedor = get_object_or_404(Fornecedor, id = id)
+ 
+    # pass the object as instance in form
+    form = FornecedorForm(request.POST or None, instance = fornecedor)
+ 
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/list_supplier')
+ 
+    # add form dictionary to context
+    context["form"] = form
+ 
+    return render(request, "update_supplier.html", context)
 
 def new_supplier(request):
     context ={}
@@ -107,3 +134,37 @@ def register(request):
         'form': form  
     }  
     return render(request, 'register.html', context)
+
+class LineChartJSONView(BaseLineChartView):
+    def get_labels(self):
+        """Return 7 labels for the x-axis."""
+        return ["January", "February", "March", "April", "May", "June", "July"]
+
+    def get_providers(self):
+        """Return names of datasets."""
+        return ["Central", "Eastside", "Westside"]
+
+    def get_data(self):
+        """Return 3 datasets to plot."""
+
+        return [[75, 44, 92, 11, 44, 95, 35],
+                [41, 92, 18, 3, 73, 87, 92],
+                [87, 21, 94, 3, 90, 13, 65]]
+
+
+line_chart = TemplateView.as_view(template_name='line_chart.html')
+line_chart_json = LineChartJSONView.as_view()
+
+def bar_produtos_chart(request):
+    labels = []
+    data = []
+
+    queryset = Produtos.objects.values('nome').annotate(quantidade=Sum('quantidade'))
+    for produto in queryset:
+        labels.append(produto['nome'])  # Alteração aqui: corrigir a atribuição do nome do produto
+        data.append(produto['quantidade'])
+
+    return JsonResponse({
+        'labels': labels,
+        'data': data,
+    })

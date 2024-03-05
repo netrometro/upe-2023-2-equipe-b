@@ -1,7 +1,17 @@
 from django.db import models
 from django import forms
+import datetime
 
 # Create your models here.
+    
+class Categoria (models.Model):
+    categoria = models.CharField(max_length=10, unique=True)
+
+    class Meta:
+        ordering = ('categoria',)
+    def __str__ (self):
+        return self.categoria
+
 
 class Produtos(models.Model):
     nome = models.CharField(max_length=100)
@@ -12,6 +22,13 @@ class Produtos(models.Model):
     cor = models.CharField(max_length=30)
     tamanho = models.CharField(max_length=10)
     alerta_estoque = models.IntegerField()
+    
+    categoria = models.ForeignKey(
+        Categoria,
+        on_delete = models.SET_NULL,
+        null = True,
+        blank = True
+    )
 
     def __str__(self):
         return self.nome
@@ -20,8 +37,14 @@ class Fornecedor(models.Model):
     nome = models.CharField(max_length=75)
     sede_local = models.CharField(max_length=150)
     telefone_contato = models.BigIntegerField()
-    entrada_data = models.DateTimeField("Data publicada")
-
+    entrada_data = models.DateTimeField("Data publicada", blank=True, null=True, default=datetime.date.today)
     def __str__(self):
         return self.nome
         
+class Nova_Solicitacao (models.Model):
+    codigo = models.CharField(max_length = 50, default = "null")
+    quantidade = models.IntegerField(max_length = 4, default = 0)
+    solicitante = models.CharField(max_length = 30, default = "null")
+    
+    def __str__(self):
+        return print(f"Código: {self.codigo}, Quantidade: {self.quantidade}, Solicitante: {self.solicitante}")

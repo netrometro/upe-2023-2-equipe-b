@@ -8,7 +8,6 @@ class FornecedorForm(forms.ModelForm):
             "nome",
             "sede_local",
             "telefone_contato",
-            "entrada_data",
         ]
         # or fields = "__all__"
 from django.contrib.auth.models import User  
