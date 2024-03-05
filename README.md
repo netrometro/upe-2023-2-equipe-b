@@ -1,6 +1,6 @@
 Como rodar o projeto:
 
-#instalar chartjs
+# Instalar chartjs
 pip install django-chartjs
 
 # Fazer migração:
