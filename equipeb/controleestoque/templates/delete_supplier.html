@@ -1,16 +1,14 @@
-
-
 <!DOCTYPE html>
 <html>
-    
+
 <head>
     {% extends 'headerandfooter.html' %}
     {% load static %} <!-- Load static files -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Lista de produtos</title>
+    <title>Excluir Produto</title>
     <link rel="stylesheet" type="text/css" href="{% static 'controleestoque/stylesheet.css' %}">
- <!-- Link to stylesheet.css -->
+    <!-- Link to stylesheet.css -->
     <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
 </head>
 
@@ -19,12 +17,6 @@
 
     <!-- botão para add produtos -->
     <div style="align-content: center; width: 100%; text-align: center;">
-        <button>
-            <a href="/new_supplier" style="text-decoration: none; padding: 10px; color: white">Adicionar Fornecedor</a>
-        </button>
-    </div>
-    <div style="align-content: center; width: 100%; text-align: center;">
-    
         <ul>
             <table style="width:100%">
                 <tr>
@@ -32,29 +24,34 @@
                     <th>Sede</th>
                     <th>Contato</th>
                     <th>Entrada</th>
-                    <th>Opções</th>
                 </tr>
 
-                {% for fornecedor in fornecedores %}.
                 <tr>
                     <td>{{ fornecedor.nome }}</td>
                     <td>{{ fornecedor.sede_local }}</td>
                     <td>{{ fornecedor.telefone_contato }}</td>
                     <td>{{ fornecedor.entrada_data }}</td>
-                    <td>
-                        <a href="/update_supplier/{{ fornecedor.id }}">Editar   </a>
-                        <br>
-                        <a href="/delete_supplier/{{ fornecedor.id }}">Remover</a>
-                        <br>
-                        <a href="/qrCode/{{ fornecedor.telefone_contato }}">Conversar por WhatsApp</a>
-                    </td>
-                </tr>                
-                {% endfor %}
-
+                </tr>
             </table>
         </ul>
+        <!-- Create a Form -->
+        <form method="POST">
+            <!-- Security token by Django -->
+            <br>
+            {% csrf_token %}
+            Você quer realmente Excluir este fornecedor?
+            <br>
+            <br>
+
+            <!-- form as paragraph -->
+
+            <input type="submit" value="Sim">
+            <a href="/list_supplier">Não</a>
+        </form>
+
     </div>
-    {% endblock %}	
+    {% endblock %}
 
 </body>
+
 </html>
